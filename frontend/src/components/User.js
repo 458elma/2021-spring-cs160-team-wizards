@@ -19,7 +19,7 @@ const User = ({user}) => {
                     <Rating value={user.rating} text={user.numReviews > 0 ? ` ${user.numReviews} reviews` : ''}></Rating>
                 </Card.Text>
                 <Card.Text as="h3">
-                    {user.description}
+                    {user.category}
                 </Card.Text>
                 <Card.Text as="h6">
                     {user.price != null ? `From $${user.price}` : ''}
