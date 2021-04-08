@@ -1,7 +1,9 @@
 import React from 'react'
+import {Route} from 'react-router-dom'
 import { LinkContainer } from 'react-router-bootstrap'
-import {Navbar, Nav, Container} from 'react-bootstrap'
-
+import {Navbar, Nav, Container, NavDropdown} from 'react-bootstrap'
+import SearchBox from './SearchBox'
+import CheckBox from './CheckBox'
 const Header = () => {
     return (
         <header>
@@ -15,6 +17,11 @@ const Header = () => {
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
 
                     <Navbar.Collapse id="basic-navbar-nav">
+                        <SearchBox/>
+                        
+                        
+
+                      {/* <Route render= {({history})=> <SearchBox history ={history}/>}/>   */}
                         <Nav className="ml-auto">
 
                             <LinkContainer to="/signup">
