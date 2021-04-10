@@ -8,14 +8,21 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "concurrently \"npm run server\" \"npm run client\"",
     "server": "nodemon backend/server.js",
-    "client": "npm start --prefix frontend"
+    "client": "npm start --prefix frontend",
+    "import-data": "node backend/seeder",
+    "destroy-data": "node backend/seeder -destroy"
   },
   "author": "Dat Nguyen",
   "license": "MIT",
   "dependencies": {
+    "bcryptjs": "^2.4.3",
     "dotenv": "^8.2.0",
     "express": "^4.17.1",
-    "mongoose": "^5.11.18"
+    "express-async-handler": "^1.1.4",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.18",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0"
   },
   "devDependencies": {
     "concurrently": "^6.0.0",

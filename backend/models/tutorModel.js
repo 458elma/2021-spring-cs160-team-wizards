@@ -2,50 +2,61 @@ import mongoose from 'mongoose'
 
 const tutorSchema = mongoose.Schema({
     name: {
-        type : String,
-        required : true
-    },
-    email: {
-        type : String,
-        required : true,
-        unique: true
-    },
-    password: {
-        type : String,
-        required : true
-    },
-    profileImage:{
         type: String,
         required: true
     },
-    gender:{
-        type: String
-    },
-    isAdmin: {
-        type : Boolean,
-        required : true,
-        default: false
-    },
-    rating:{
-        type: Number,
+    email: {
+        type: String,
         required: true,
-        default: 0
+        unique: true
     },
-    reviews:[
+    password: {
+        type: String,
+        required: true
+    },
+    profileImage: {
+        type: String,
+        required: false,
+        default: ''
+
+    },
+    gender: {
+        type: String,
+        require: false,
+        default: ''
+
+    },
+    description: {
+        type: String,
+        required: false,
+        default: ''
+    },
+    review: [
         {
-            review:{
-                type: mongoose.Schema.Types.ObjectId,
-                required: true
-            }
+            type: mongoose.Schema.Types.ObjectId,
+            required: false,
+            ref: 'Review'
         }
     ],
-    numReviews
-    :{
-        type: Number,
-        required: true,
-        default: 0
-    },
-    sessions: [Session]
+    sessions: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            required: false,
+            ref: 'Session'
+        }
+    ],
+    chatbox: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            required: false,
+            ref: 'Chatbox'
+        }
+    ],
+    walllet: {
+        type: mongoose.Schema.Types.ObjectId,
+        required: false,
+        ref: 'Wallet'
+    }
 }, {
     timestamps: true
 })

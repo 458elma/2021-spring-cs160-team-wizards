@@ -1,70 +1,57 @@
 import mongoose from 'mongoose'
 
 const sessionSchema = mongoose.Schema({
-    tutor:{
+    tutor: {
         type: mongoose.Schema.Types.ObjectId,
-        required: true,
+        required: false,
         ref: 'Tutor'
     },
-    students:[
+    students: [
         {
             type: mongoose.Schema.Types.ObjectId,
-            required: true,
+            required: false,
             ref: 'Student'
         }
     ],
     studentNum:
     {
-        type : Number,
-        required: true,
+        type: Number,
+        required: false,
         default: 1
     },
     name: {
-        type : String,
-        required : true
-    },
-    password: {
-        type : String,
-        required : true
-    },
-    description:{
         type: String,
         required: false
     },
-    paymentMethod:
-    {
+    password: {
         type: String,
-        required: true
+        required: false
     },
-    paymentResult:
-    {
-        id: {type: String},
-        status: {type: String},
-        update_time: {type: String},
-        email_address: {type: String}
+    description: {
+        type: String,
+        required: false
     },
-    taxPrice:{
+    category: {
+        type: String,
+        required: false
+    },
+    schedule: [
+        {
+            type: Date,
+            required: false
+        }
+    ],
+    price: {
         type: Number,
-        required: true,
-        default: 0.0
+        required: false
     },
-    shippingPrice:{
-        type: Number,
-        required: true,
-        default: 0
-    },
-    totalPrice:{
-        type: Number,
-        required: true,
-        default: 0
-    },
-    isPaid:{
-        type: Boolean,
-        required: true,
-        default: false
-    },
-    paidAt:{type: Date},
-    
+    review: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            required: false,
+            ref: 'Review'
+        }
+    ]
 }, {
     timestamps: true
 })
