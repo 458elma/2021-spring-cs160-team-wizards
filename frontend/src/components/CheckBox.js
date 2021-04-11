@@ -42,7 +42,7 @@ function CheckBox(props) {
         }
 
         setChecked(tempChecked)
-        props.handleFilter(tempChecked)
+        props.handleFilters(tempChecked)
          
 
     }

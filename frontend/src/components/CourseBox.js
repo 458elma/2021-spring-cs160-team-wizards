@@ -40,7 +40,7 @@ function CourseBox(props)
     const renderCourseLists=()=>
     (   
      courses.map((value)=>(
-     <Radio key={value._id} value={`{value._id}`}>{value.name}</Radio>
+     <Radio key={value._id} value={`${value._id}`}>{value.name}</Radio>
     ))
     )
     const onChangehandler =(event)=>
