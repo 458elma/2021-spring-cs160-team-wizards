@@ -1,67 +1,71 @@
-import React, {useState} from 'react'
-import {Checkbox, Collapse} from 'antd'
-const {Panel}= Collapse
+import React, { useState } from 'react'
+import { Checkbox, Collapse } from 'antd';
+
+const { Panel } = Collapse
 const tutorRequirements=[
-    {
-        "id":1,
-        "name": "No Charge"
-    },
-    {
-        "id":2,
-        "name": "$10-$15/hr"
-    },
-    {
-        "id":3,
-        "name": "$15-$20/hr"
-    },
-    {
-        "id":4,
-        "name": "$20-$25/hr"
-    },
-    {
-        "id":5,
-        "name": "$25-$30/hr"
-    }
+  {
+      "id":1,
+      "name": "Algebra"
+  },
+  {
+      "id":2,
+      "name": "Zoology"
+  },
+  {
+      "id":3,
+      "name": "Object Oriented Program"
+  },
+  {
+      "id":4,
+      "name": "Chemistry"
+  },
+  {
+      "id":5,
+      "name": "Sociology"
+  }
 ]
 
-function CheckBox(props)
-{
+function CheckBox(props) {
+
+  
     const [Checked, setChecked] = useState([])
-    const handleToggle=(value)=>{
-      
-      const currentIndex= Checked.indexOf(value); 
-      const newChecked = [...Checked];
-      if(currentIndex === -1)
-      {
-        newChecked.push(value)
-      }
-      else
-      {
-        newChecked.splice(currentIndex,1)
-      }
-      setChecked(newChecked)
-      props.handleFilters(newChecked)
+
+    const handleToggle = (value) => {
+
+        const currIndex = Checked.indexOf(value);
+        const tempChecked = [...Checked];
+
+        if (currIndex === -1) {
+            tempChecked.push(value)
+        } else {
+            tempChecked.splice(currIndex, 1)
+        }
+
+        setChecked(tempChecked)
+        props.handleFilters(tempChecked)
+         
+
     }
 
-    const renderCheckBoxLists=()=>tutorRequirements.map((value, index)=>
-    (
+    //rendering the view to the browser window, getting the key and value
+    const renderCheckboxLists = () => tutorRequirements.map((value, index) => (
         <React.Fragment key={index}>
-              <Checkbox
-              onChange={()=>handleToggle(value._id)}
-              type="checkbox"
-              checked={Checked.indexOf(value._id) === -1 ? false : true}
-              />
-              <span>{value.name}</span>
-            </React.Fragment>
+            <Checkbox
+                onChange={() => handleToggle(value.id)}//onchange is performed when the check is done on the name with particular id
+                type="checkbox"
+                checked={Checked.indexOf(value.id)===-1 ? false:true}//false if none of them are checked else true
+            />
+            <span>{value.name}</span>&nbsp;&nbsp;
+        </React.Fragment>
     ))
-    
-    return(
+
+    return (
         <div>
-          <Collapse defaultActiveKey={['0']}>
-          <Panel header= "Price Range" key = "1">
-            {renderCheckBoxLists()}
-          </Panel>
-          </Collapse>
+            <Collapse defaultActiveKey={['0']} >
+                <Panel header="Courses" key="1">
+                    {renderCheckboxLists()}
+                </Panel>
+            </Collapse>
         </div>
     )
 }
