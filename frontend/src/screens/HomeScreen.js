@@ -18,6 +18,7 @@ const HomeScreen = () => {
 
     return (
         <div>
+            {/*
             <h1>Users</h1>
             <Row>
                 {users.map(user => (
@@ -26,6 +27,7 @@ const HomeScreen = () => {
                     </Col>
                 ))}
             </Row>
+            */}
         </div>
     )
 }
