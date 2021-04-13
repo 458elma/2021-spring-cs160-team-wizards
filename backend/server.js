@@ -26,4 +26,11 @@ app.get('/users/:id', (req, res)=>{
 })
 
 
+app.get('/users/:id/chatbox', (req, res)=>{
+    const user = users.find((u) => u._id === req.params.id)
+    res.send(`This is in user ${req.params.id}`)
+    //res.json(user)
+})
+
+
 app.listen(PORT, console.log('The server has started'))
