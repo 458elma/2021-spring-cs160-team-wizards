@@ -6,9 +6,12 @@ import Header from './components/Header.js'
 import Footer from './components/Footer.js'
 import HomeScreen from './screens/HomeScreen.js'
 import StudentScreen from './screens/StudentScreen.js'
-import TutorScreen from './screens/TutorScreen.js'
+import UserScreen from './screens/UserScreen.js'
 import AdminStudentScreen from './screens/AdminStudentScreen.js'
-import AdminTutorScreen from './screens/AdminTutorScreen'
+import AdminUserScreen from './screens/AdminUserScreen'
+import EditInfoScreen from './screens/EditInfoScreen'
+import ViewReviewScreen from './screens/ViewReviewScreen'
+import WriteReviewScreen from './screens/WriteReviewScreen'
 
 const App = () => {
  
@@ -18,10 +21,11 @@ const App = () => {
       <main className='py-3'>
         <Container>
           <Route path='/' component={HomeScreen} exact></Route>
-          <Route path='/users/students/:id' component={StudentScreen}></Route>
-          <Route path='/users/tutors/:id' component={TutorScreen}></Route>
-          <Route path='/admins/students/:id' component={AdminStudentScreen}></Route>
-          <Route path='/admins/tutors/:id' component={AdminTutorScreen}></Route>
+          <Route path='/users/:id' component={UserScreen}></Route>
+          <Route path='/admins/:id' component={AdminUserScreen}></Route>
+          <Route path='/infoEditor/admins/:id' component={EditInfoScreen}></Route>
+          <Route path='/reviewView/admins/:id' component={ViewReviewScreen}></Route>
+          <Route path='/reviewWriter/users/:id' component={WriteReviewScreen}></Route>
         </Container>
         
       </main>

@@ -4,12 +4,12 @@ import axios from 'axios'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/Rating.js'
 
-const AdminTutorScreen = ({ match }) => {
+const UserScreen = ({ match }) => {
 
     const [user, setUser] = useState([])
     useEffect(() => {
         const fetchUser = async() => {
-            const res = await axios.get(`/admins/tutors/${match.params.id}`)
+            const res = await axios.get(`/users/${match.params.id}`)
             setUser(res.data)
         }
 
@@ -30,20 +30,21 @@ const AdminTutorScreen = ({ match }) => {
                     <ListGroup.Item>
                         <h3>{user.name}</h3>
                     </ListGroup.Item>
-
+                    {
+                    user.isTutor &&
                     <ListGroup.Item>
-                        <Link className='btn btn-dark my-1'>View Reviews</Link>
-                        <br></br>
-                        <Link className='btn btn-dark my-1'>Chats</Link>
-                        <br></br>
-                        <Link className='btn btn-dark my-1'>Edit Transaction Info</Link>
+                        <Link 
+                        className='btn btn-dark my-1'
+                        to={`/reviewWriter/users/${match.params.id}`}>
+                            Reviews
+                        </Link>
                     </ListGroup.Item>
+                    }
                     
                 </ListGroup>
             </Col>
 
             <Col>
-                <Link className='btn btn-dark my-1'>Edit Basic Info</Link>
                 <ListGroup.Item>
                     <h2>Basic Info</h2>
                     <h6>Email: {user.email}</h6>
@@ -53,9 +54,8 @@ const AdminTutorScreen = ({ match }) => {
                     <p>{user.description}</p>
                 </ListGroup.Item>
                 <br></br>
-                <Link className='btn btn-dark my-1'>Manage Sessions</Link>
                 <ListGroup.Item>
-                    <h2>Sessions</h2>
+                    <h3>Sessions</h3>
                 </ListGroup.Item>
             </Col>
             </Row>
@@ -63,4 +63,4 @@ const AdminTutorScreen = ({ match }) => {
     )
 }
 
-export default AdminTutorScreen
+export default UserScreen
