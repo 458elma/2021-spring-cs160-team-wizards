@@ -1,11 +1,22 @@
 import React, { useState, useEffect } from 'react'
-import {Row, Col} from 'react-bootstrap'
+import {Row, Col, Button, Carousel} from 'react-bootstrap'
 import axios from 'axios'
 import User from '../components/User'
 import CheckBox from '../components/CheckBox'
 import CourseBox from '../components/CourseBox'
+import {tutorRequirements, courses} from '../components/FilterData'
+import {Route} from 'react-router-dom' 
+import SearchBox from '../components/SearchBox'
+import {Navbar, Nav, Container, NavDropdown} from 'react-bootstrap'
+import physics from '../components/physics.jpeg'
+import review1 from '../components/review1.jpeg'
+import review2 from '../components/review2.jpeg'
+import review3 from '../components/review3.jpeg'
+import ReactPlayer from 'react-player'
 const HomeScreen = () => {
-
+    const [Skip, setSkip] = useState(0)
+    const [Limit, setLimit] = useState(8)
+    const [SearchTerms, setSearchTerms] = useState("")
     const [users, setUsers] = useState([])
     const [Filters, setFilters] = useState({
         tutorRequirements:[],
@@ -23,49 +34,134 @@ const HomeScreen = () => {
     {
 
     }
-    //han dling the checkbox filter
-    const handleFilters=(filters, group)=>
-    {
-        //getting logs from the checked boxes
-        console.log(filters)
-        //making new filters
-        const tempFilters={...Filters}
-        tempFilters[group]=filters
-        if(group === "courses")
-        {
+    //handling the checkbox filter
+    const handlePrice = (value) => {
+        const data = courses;
+        let array = [];
+
+        for (let key in data) {
+
+            if (data[key]._id === parseInt(value, 10)) {
+                array = data[key].array;
+            }
+        }
+        console.log('array', array)
+        return array
+    }
+
+    const handleFilters = (filters, category) => {
+
+        const newFilters = { ...Filters }
+
+        newFilters[category] = filters
+
+        if (category === "courses") {
+            let priceValues = handlePrice(filters)
+            newFilters[category] = priceValues
 
         }
-        showResults(tempFilters)
-        setFilters(tempFilters)
 
+        console.log(newFilters)
+
+        //showFilteredResults(newFilters)
+        setFilters(newFilters)
     }
-   
-    return (
-        <div>
-          {/* organizing the filter in a row */}
-          <Row gutter={[14,14]}>
-              <Col lg={10} xs={20}>
-                  <CheckBox
-                     //handleFilters={filters=>handleFilters(filters,"tutorRequirements")}/>
-                  />
-              </Col>
-              <Col lg={10} xs={20}>
-                  <CourseBox
-                     //handleFilters={filters=>handleFilters(filters,"courses")}
-              />
+    const updateSearchTerms = (newSearchTerm) => {
 
-              </Col>
-          </Row>
-          
+        const variables = {
+            skip: 0,
+            limit: Limit,
+            filters: Filters,
+            searchTerm: newSearchTerm
+        }
+
+        setSkip(0)
+        setSearchTerms(newSearchTerm)
+
+       // getProducts(variables)
+    }
+    return (
         
-            <h1>Users</h1>
-            <Row>
-                {users.map(user => (
-                    <Col sm={12} md={6} lg={4} xl={3}>
-                        <User user={user}></User>
-                    </Col>
-                ))}
-            </Row>
+       <div>    
+
+
+           {/* Filter  */}
+        <div>
+           <Row >
+               <Col>
+                   <CheckBox
+                       list={tutorRequirements}
+                       handleFilters={filters => handleFilters(filters, "tutorRequirements")}
+                   />
+               </Col>
+               <Col >
+                   <CourseBox
+                       list={courses}
+                       handleFilters={filters => handleFilters(filters, "courses")}
+                   />
+               </Col>
+           </Row>
+        </div>
+            <br>
+            </br>
+            <Container>
+                <Row className="justify-content-md-center">
+                   <Col md="auto"><h1>Get help Today</h1></Col>
+                
+                </Row>
+                <Row className="justify-content-md-center">
+                    
+                   <Col md="auto"><Route render={({history})=><SearchBox history={history} />}/></Col>
+                </Row>
+            </Container>
+            <div>
+              <h4>What to Learn Next</h4> <br />
+              <h5>Recommended For You</h5>
+              
+              <div class="text-center" style={{backgroundColor: "#e4ebe9"}}>
+              <Row>
+            <img src={physics} class="rounded mx-auto d-block"/><br></br>
+            <img src={physics}/>
+           
+               </Row>
+              </div>
+            </div>
+            <br>
+            </br>
+            <div class="container" >
+                
+                <h5>Most Viewed Courses</h5>
+                 <div class="text-center" style={{backgroundColor: "#e4ebe9"}}>
+                 <Button color="#7dada0">Web Development</Button>{' '}
+                 <Button color="#7dada0">Data Science</Button>{' '}
+                 <Button color="#7dada0">AP Math</Button>{' '}
+                 <Button color="#7dada0">Data Structure</Button>{' '}
+                 <Button color="#7dada0">Statistics</Button>{' '}
+                 <Button color="#7dada0">Sociology</Button>{' '}      
+              </div>
+<br>
+</br>
+<br>
+</br>
+<br>
+
+</br>
+<div class="text-center">
+    <Carousel style={{backgroundColor: "#e4ebe9"}}  >
+    <Carousel.Item interval={1000}>
+        <img src={review1}/> 
+    </Carousel.Item>
+    <Carousel.Item interval={500}>
+        <img src={review2}/>
+    </Carousel.Item>
+    <Carousel.Item>
+        <img src={review3}/>
+    </Carousel.Item>
+</Carousel>
+</div>
+        </div>
+
+          
         </div>
     )
 }
