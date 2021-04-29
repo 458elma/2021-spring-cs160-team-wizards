@@ -22,10 +22,12 @@ const SearchBox = ({history}) => {
                 name='q' 
                 onChange={(e)=> setKeyword (e.target.value)}
                 placeholder='Search Subject...'
-                className= 'mx-auto'
+                className= 'py-3 px-md-5'
+                size ='6'
+                
             ></Form.Control>
-            <Button type ='submit' varient ='outline-dark' className='mx-auto'>
-                Search
+            <Button size ='6' type ='submit' varient ='outline-dark' className='py-3 px-sm-5'>
+                Get Help
             </Button>
         </Form>
     )

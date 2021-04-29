@@ -5,6 +5,7 @@ const Footer = () => {
     return (
         <footer>
             <Container>
+            
                 <Row>
                     <Col className='text-center py-3'>
                         Copyright &copy; TutorPlace {new Date().getFullYear()}
@@ -16,3 +17,4 @@ const Footer = () => {
 }
 
 export default Footer
+
