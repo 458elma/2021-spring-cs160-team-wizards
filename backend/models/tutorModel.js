@@ -35,8 +35,7 @@ const tutorSchema = mongoose.Schema({
         {
             review:{
                 type: mongoose.Schema.Types.ObjectId,
-                required: true,
-                ref: 'Review'
+                required: true
             }
         }
     ],

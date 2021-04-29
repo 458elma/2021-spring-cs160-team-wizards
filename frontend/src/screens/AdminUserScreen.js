@@ -4,12 +4,12 @@ import axios from 'axios'
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap'
 import Rating from '../components/Rating.js'
 
-const UserScreen = ({ match }) => {
+const AdminUserScreen = ({ match }) => {
 
     const [user, setUser] = useState([])
     useEffect(() => {
         const fetchUser = async() => {
-            const res = await axios.get(`/users/${match.params.id}`)
+            const res = await axios.get(`/admins/${match.params.id}`)
             setUser(res.data)
         }
 
@@ -30,21 +30,34 @@ const UserScreen = ({ match }) => {
                     <ListGroup.Item>
                         <h3>{user.name}</h3>
                     </ListGroup.Item>
-                    {
-                    user.isTutor &&
+
                     <ListGroup.Item>
+                        {
+                        user.isTutor &&
                         <Link 
                         className='btn btn-dark my-1'
-                        to={`/reviewWriter/users/${match.params.id}`}>
-                            Reviews
+                        to={`/reviewView/admins/${match.params.id}`}>
+                            View Reviews
                         </Link>
+                        }
+                        {
+                        user.isTutor &&
+                        <br></br>
+                        }
+                        <Link className='btn btn-dark my-1'>Chats</Link>
+                        <br></br>
+                        <Link className='btn btn-dark my-1'>Edit Transaction Info</Link>
                     </ListGroup.Item>
-                    }
                     
                 </ListGroup>
             </Col>
 
             <Col>
+                <Link 
+                className='btn btn-dark my-1' 
+                to={`/infoEditor/admins/${match.params.id}`}>
+                    Edit Basic Info
+                </Link>
                 <ListGroup.Item>
                     <h2>Basic Info</h2>
                     <h6>Email: {user.email}</h6>
@@ -54,8 +67,9 @@ const UserScreen = ({ match }) => {
                     <p>{user.description}</p>
                 </ListGroup.Item>
                 <br></br>
+                <Link className='btn btn-dark my-1'>Manage Sessions</Link>
                 <ListGroup.Item>
-                    <h3>Sessions</h3>
+                    <h2>Sessions</h2>
                 </ListGroup.Item>
             </Col>
             </Row>
@@ -63,4 +77,4 @@ const UserScreen = ({ match }) => {
     )
 }
 
-export default UserScreen
+export default AdminUserScreen
