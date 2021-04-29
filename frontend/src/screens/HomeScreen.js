@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import {Row, Col, Button, Carousel} from 'react-bootstrap'
 import axios from 'axios'
 import User from '../components/User'
@@ -12,24 +13,15 @@ import physics from '../components/physics.jpeg'
 import review1 from '../components/review1.jpeg'
 import review2 from '../components/review2.jpeg'
 import review3 from '../components/review3.jpeg'
-import ReactPlayer from 'react-player'
+import {listUsers} from '../actions/userActions'
+
 const HomeScreen = () => {
-    const [Skip, setSkip] = useState(0)
-    const [Limit, setLimit] = useState(8)
-    const [SearchTerms, setSearchTerms] = useState("")
-    const [users, setUsers] = useState([])
+    const dispatch = useDispatch()
     const [Filters, setFilters] = useState({
         tutorRequirements:[],
         courses:[]
     })
-    useEffect(() => {
-        const fetchUsers = async() => {
-            const res = await axios.get('/users')
-            setUsers(res.data)
-        }
-
-        fetchUsers()
-    }, [])
+   
     const showResults=(tempFilters)=>
     {
 
@@ -66,20 +58,7 @@ const HomeScreen = () => {
         //showFilteredResults(newFilters)
         setFilters(newFilters)
     }
-    const updateSearchTerms = (newSearchTerm) => {
-
-        const variables = {
-            skip: 0,
-            limit: Limit,
-            filters: Filters,
-            searchTerm: newSearchTerm
-        }
-
-        setSkip(0)
-        setSearchTerms(newSearchTerm)
-
-       // getProducts(variables)
-    }
+    
     return (
         
        <div>    
