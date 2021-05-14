@@ -1,16 +1,42 @@
 import mongoose from 'mongoose'
 
-const sessionSchema = mongoose.Schema({
+const reviewSchema = mongoose.Schema(
+  {
+    name: { 
+        type: String, 
+        required: true }
+        ,
+    rating: { 
+        type: Number, 
+        required: true 
+    },
+    comment: { 
+        type: String, 
+        required: true 
+    },
+    user: {
+      type: mongoose.Schema.Types.ObjectId,
+      required: true,
+      ref: 'User',
+    },
+  },
+  {
+    timestamps: true,
+  }
+)
+
+const sessionSchema = mongoose.Schema(
+  {
     tutor: {
         type: mongoose.Schema.Types.ObjectId,
         required: false,
-        ref: 'Tutor'
+        ref: 'User'
     },
     students: [
         {
             type: mongoose.Schema.Types.ObjectId,
             required: false,
-            ref: 'Student'
+            ref: 'User'
         }
     ],
     studentNum:
@@ -20,41 +46,42 @@ const sessionSchema = mongoose.Schema({
         default: 1
     },
     name: {
-        type: String,
-        required: false
+      type: String,
+      required: true,
     },
-    password: {
-        type: String,
-        required: false
-    },
-    description: {
-        type: String,
-        required: false
+    image: {
+      type: String,
+      required: false,
     },
     category: {
-        type: String,
-        required: false
+      type: String,
+      required: true,
     },
-    schedule: [
-        {
-            type: Date,
-            required: false
-        }
-    ],
+    description: {
+      type: String,
+      required: true,
+    },
+    reviews: [reviewSchema],
+    rating: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
+    numReviews: {
+      type: Number,
+      required: true,
+      default: 0,
+    },
     price: {
-        type: Number,
-        required: false
+      type: Number,
+      required: false,
+      default: 0,
     },
-    review: [
-        {
-            type: mongoose.Schema.Types.ObjectId,
-            required: false,
-            ref: 'Review'
-        }
-    ]
-}, {
-    timestamps: true
-})
+  },
+  {
+    timestamps: true,
+  }
+)
 
 const Session = mongoose.model('Session', sessionSchema)
 

@@ -1,12 +1,10 @@
 import mongoose from 'mongoose'
 import dotenv from 'dotenv'
 import connectDB from './config/db.js'
-import students from './data/students.js'
-import tutors from './data/tutors.js'
+import users from './data/users.js'
 import sessions from './data/sessions.js'
 import Session from './models/sessionModel.js'
-import Tutor from './models/tutorModel.js'
-import Student from './models/studentModel.js'
+import User from './models/userModel.js'
 // import Dashboard from './models/dashboardModel.js'
 
 dotenv.config()
@@ -15,17 +13,15 @@ connectDB()
 
 const importData = async () => {
     try {
-        await Tutor.deleteMany();
-        await Student.deleteMany();
+        await User.deleteMany();
         await Session.deleteMany();
         // await Dasboard.deleteMany();
 
-        const newTutors = await Tutor.insertMany(tutors) //insert tutors to db
-        const newStudents = await Student.insertMany(students) //insert students to db
+        const newUsers = await User.insertMany(users) //insert users to db
 
 
-        const tutorID = newTutors[0]._id
-        const studentIDs = newStudents.map(s => s._id)
+        const tutorID = newUsers[0]._id
+        const studentIDs = newUsers.map(u => u._id)
         const newSessions = sessions.map(session => {
             return { ...session, tutor: tutorID, students: studentIDs }
         })
@@ -41,8 +37,7 @@ const importData = async () => {
 
 const destroyData = async () => {
     try {
-        await Tutor.deleteMany();
-        await Student.deleteMany();
+        await User.deleteMany();
         await Session.deleteMany();
         // await Dasboard.deleteMany();
 

@@ -1,6 +1,6 @@
 import mongoose from 'mongoose'
 
-const tutorSchema = mongoose.Schema({
+const userSchema = mongoose.Schema({
     name: {
         type: String,
         required: true
@@ -14,7 +14,7 @@ const tutorSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    profileImage: {
+    image: {
         type: String,
         required: false,
         default: ''
@@ -25,6 +25,11 @@ const tutorSchema = mongoose.Schema({
         require: false,
         default: ''
 
+    },
+    isTutor: {
+        type: Boolean,
+        require: true,
+        default: false,
     },
     description: {
         type: String,
@@ -61,6 +66,6 @@ const tutorSchema = mongoose.Schema({
     timestamps: true
 })
 
-const Tutor = mongoose.model('Tutor', tutorSchema)
+const User = mongoose.model('User', userSchema)
 
-export default Tutor
+export default User

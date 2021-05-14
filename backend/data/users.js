@@ -1,8 +1,8 @@
 import bcrypt from 'bcryptjs'
-const tutors = [
+const users = [
 
     {
-        name: 'Tutor 1',
+        name: 'User 1',
         email: 'jane@sjsu.edu',
         password: bcrypt.hashSync('123456', 12),
         profileImage: '/images/user1.jpg',
@@ -10,7 +10,7 @@ const tutors = [
         description: 'English Tutor',
     },
     {
-        name: 'Tutor 2',
+        name: 'User 2',
         email: 'joe@sjsu.edu',
         password: bcrypt.hashSync('123456', 12),
         image: '/images/user2.jpg',
@@ -20,7 +20,7 @@ const tutors = [
 
     },
     {
-        name: 'Tutor 3',
+        name: 'User 3',
         email: 'jerry@sjsu.edu',
         password: bcrypt.hashSync('123456', 12),
         image: '/images/user3.jpg',
@@ -29,7 +29,7 @@ const tutors = [
 
     },
     {
-        name: 'Tutor 4',
+        name: 'User 4',
         email: 'jack@sjsu.edu',
         password: bcrypt.hashSync('123456', 12),
         image: '/images/user4.jpg',
@@ -38,7 +38,7 @@ const tutors = [
 
     },
     {
-        name: 'Tutor 5',
+        name: 'User 5',
         email: 'john@sjsu.edu',
         password: bcrypt.hashSync('123456', 12),
         image: '/images/user5.jpg',
@@ -47,7 +47,7 @@ const tutors = [
     },
 
     {
-        name: 'Tutor 6',
+        name: 'User 6',
         email: 'jason@sjsu.edu',
         password: bcrypt.hashSync('123456', 12),
         image: '/images/user6.jpg',
@@ -56,4 +56,4 @@ const tutors = [
 
     },
 ]
-export default tutors
+export default users
