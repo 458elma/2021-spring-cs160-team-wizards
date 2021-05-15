@@ -9,7 +9,7 @@ const UserScreen = ({ match }) => {
     const [user, setUser] = useState([])
     useEffect(() => {
         const fetchUser = async () => {
-            const res = await axios.get(`/users/tutors/${match.params.id}`)
+            const res = await axios.get(`/users/${match.params.id}`)
             setUser(res.data)
         }
 

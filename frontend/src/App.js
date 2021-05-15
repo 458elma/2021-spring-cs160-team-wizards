@@ -23,21 +23,13 @@ const App = () => {
         <Container>
           <Route path='/login' component={LoginScreen} />
           <Route path='/signup' component={SignupScreen} />
-          <Route path='/users/:id/profile' component={ProfileScreen} />
+          <Route path='/users/:id' component={ProfileScreen} />
           <Route path='/sessions/:id' component={SessionScreen} />
 
-          <Route path='/users' component={UserListScreen} />
+          {/* <Route path='/users' component={UserListScreen} /> */}
           <Route path='/users/:id/edit' component={UserEditScreen} />
-          <Route
-            path='/sessions'
-            component={SessionListScreen}
-            exact
-          />
-          <Route
-            path='/sessions/:pageNumber'
-            component={SessionListScreen}
-            exact
-          />
+          <Route path='/sessions' component={SessionListScreen} exact />
+          {/* <Route path='/sessions/:pageNumber' component={SessionListScreen} exact /> */}
           <Route path='/sessions/:id/edit' component={SessionEditScreen} />
           <Route path='/search/:keyword' component={HomeScreen} exact />
           <Route path='/page/:pageNumber' component={HomeScreen} exact />

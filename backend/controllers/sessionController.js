@@ -26,7 +26,7 @@ const getSessions = asyncHandler(async (req, res) => {
 })
 
 // @desc    Fetch single session
-// @route   GET /products/:id
+// @route   GET /sessions/:id
 // @access  Public
 const getSessionById = asyncHandler(async (req, res) => {
     const session = await Session.findById(req.params.id)
@@ -55,7 +55,7 @@ const deleteSession = asyncHandler(async (req, res) => {
 })
 
 // @desc    Create a session
-// @route   POST /products
+// @route   POST /sessions
 // @access  Private/Tutor
 const createSession = asyncHandler(async (req, res) => {
     const session = new Session({
