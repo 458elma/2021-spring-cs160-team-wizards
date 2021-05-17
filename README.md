@@ -1,15 +1,16 @@
 # 2021-spring-cs160-team-wizards
+> Tutoring platform built with ReaCt.js, Node.js and MongoDB
+
+## Features
+- LogIn and LogOut
+- Register
+- Profile Setting 
+- Review and Rate Courses
+- Create New Sessions
+- Search Filter
+- Upload Course/User Photo
 ​
-##Features 
--LogIn and LogOut
--Register
--Profile Setting 
--Review and Rate Courses
--Create New Sessions
--Search Filter
--Upload Course/User Photo
-​
-###Env Variables 
+## Env Variables 
 Create a .env file in then root and add the following code
 ```
 NODE_ENV = development
@@ -17,14 +18,14 @@ PORT = 8000
 MONGO_URI = Mongodb URI 
 ```
 ​
-###Install Dependencies- frontend/backend
+## Install Dependencies- frontend/backend
 ```
 npm install
 cd frontend 
 npm install
 ```
 
-###Run 
+## Run 
 ```
 # Run frontend (:3000) & backend (:8000)
 npm run dev
@@ -33,13 +34,13 @@ npm run dev
 npm run server
 ```
 
-##Build
+## Build
 ```
 # Create frontend prod build
 cd frontend
 npm run build
 ```
-###Database
+## Database
 ```
 # Import data
 npm run data:import
