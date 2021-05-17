@@ -28,7 +28,7 @@ const SessionCarousel = () => {
             <Image src={session.image} alt={session.name} fluid />
             <Carousel.Caption className='carousel-caption'>
               <h2>
-                {session.name} (${session.description})
+                {session.name} : {session.description}
               </h2>
             </Carousel.Caption>
           </Link>

@@ -69,6 +69,9 @@ const getUserProfile = asyncHandler(async (req, res) => {
             name: user.name,
             email: user.email,
             isTutor: user.isTutor,
+            description: user.description,
+            image: user.image,
+            sessions: user.sessions
         })
     } else {
         res.status(404)
@@ -88,6 +91,11 @@ const updateUserProfile = asyncHandler(async (req, res) => {
         if (req.body.password) {
             user.password = req.body.password
         }
+        user.isTutor = req.body.isTutor
+        user.description = req.body.description
+        user.image = req.body.image
+        // user.sessions = user.sessions.push(req.body.sessions)
+
 
         const updatedUser = await user.save()
 
@@ -96,6 +104,9 @@ const updateUserProfile = asyncHandler(async (req, res) => {
             name: updatedUser.name,
             email: updatedUser.email,
             isTutor: updatedUser.isTutor,
+            description: updatedUser.description,
+            image: updatedUser.image,
+            // sessions: updateUser.sessions,
             token: generateToken(updatedUser._id),
         })
     } else {
@@ -151,6 +162,7 @@ const updateUser = asyncHandler(async (req, res) => {
         user.name = req.body.name || user.name
         user.email = req.body.email || user.email
         user.isTutor = req.body.isTutor
+        user.image = req.body.image
 
         const updatedUser = await user.save()
 
@@ -159,6 +171,7 @@ const updateUser = asyncHandler(async (req, res) => {
             name: updatedUser.name,
             email: updatedUser.email,
             isTutor: updatedUser.isTutor,
+            image: updatedUser.image
         })
     } else {
         res.status(404)

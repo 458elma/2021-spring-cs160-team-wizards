@@ -8,6 +8,8 @@ import Loader from '../components/Loader'
 import FormContainer from '../components/FormContainer'
 import { listSessionDetails, updateSession } from '../actions/sessionActions'
 import { SESSION_UPDATE_RESET } from '../constants/sessionConstants'
+import { getUserDetails, updateUserProfile } from '../actions/userActions'
+
 
 const SessionEditScreen = ({ match, history }) => {
   const sessionId = match.params.id
@@ -19,7 +21,7 @@ const SessionEditScreen = ({ match, history }) => {
   const [studentNum, setStudentNum] = useState(0)
   const [description, setDescription] = useState('')
   const [uploading, setUploading] = useState(false)
-
+  const [tutor, setTutor] = useState('')
   const dispatch = useDispatch()
 
   const sessionDetails = useSelector((state) => state.sessionDetails)
@@ -46,6 +48,7 @@ const SessionEditScreen = ({ match, history }) => {
         setCategory(session.category)
         setStudentNum(session.studentNum)
         setDescription(session.description)
+        setTutor(session.tutor)
       }
     }
   }, [dispatch, history, sessionId, session, successUpdate])
@@ -84,7 +87,9 @@ const SessionEditScreen = ({ match, history }) => {
         category,
         description,
         studentNum,
-      })
+        tutor
+      }),
+      updateUserProfile({ sessions: sessionId })
     )
   }
 

@@ -16,8 +16,8 @@ const userSchema = mongoose.Schema({
     },
     image: {
         type: String,
-        required: false,
-        default: ''
+        required: true,
+        default: '/uploads/UserSample.jpg'
 
     },
     gender: {

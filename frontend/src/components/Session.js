@@ -24,7 +24,7 @@ const Session = ({ session }) => {
           />
         </Card.Text>
 
-        <Card.Text as='h3'>${session.description}</Card.Text>
+        <Card.Text as='h3'>{session.description}</Card.Text>
       </Card.Body>
     </Card>
   )
