@@ -106,7 +106,7 @@ const SessionScreen = ({ history, match }) => {
                     <Row>
                       <Col>Status:</Col>
                       <Col>
-                        {session.studentNum > 0 ? 'Available Seats' : 'No Seats Available'}
+                        {session.studentNum > 0 ? 'Open Seats' : 'No Seats Available'}
                       </Col>
                     </Row>
                   </ListGroup.Item>

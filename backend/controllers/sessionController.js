@@ -62,7 +62,7 @@ const createSession = asyncHandler(async (req, res) => {
         name: 'Sample name',
         price: 0,
         tutor: req.user._id,
-        image: '/images/sample.jpg',
+        image: '/uploads/sessionSample.png',
         category: 'Sample category',
         studentNum: 1,
         numReviews: 0,

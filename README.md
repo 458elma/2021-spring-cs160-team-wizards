@@ -14,19 +14,24 @@ Env Variables
 Create a .env file in then root and add the following code
 NODE_ENV = development
 PORT = 8000
-MONGO_URI = Mongodb URI 
+MONGO_URI = mongodb uri
+JWT_SECRET = tutorplace123
 ​
 Install Dependencies- frontend/backend
 npm install
 cd frontend 
 npm install
-​
+​cd ..
+
 Run 
 # Run frontend (:3000) & backend (:8000)
-npm run dev
+npm run client
 ​
 # Run backend only
 npm run server
+
+# Run the whole webapp
+npm start
 ​
 Build
 # Create frontend prod build

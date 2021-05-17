@@ -41,6 +41,7 @@ const registerUser = asyncHandler(async (req, res) => {
         name,
         email,
         password,
+        image: '/uploads/userSample.jpg',
     })
 
     if (user) {
