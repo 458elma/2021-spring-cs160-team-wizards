@@ -1,29 +1,49 @@
+import path from 'path'
 import express from 'express'
 import dotenv from 'dotenv'
-import users from './data/users.js'
-
+import morgan from 'morgan'
+import { notFound, errorHandler } from './middleware/errorMiddleware.js'
 import connectDB from './config/db.js'
+import colors from 'colors'
+import sessionRoutes from './routes/sessionRoutes.js'
+import userRoutes from './routes/userRoutes.js'
+import uploadRoutes from './routes/uploadRoutes.js'
 
 dotenv.config()
-
-const PORT = process.env.PORT || 8000
 
 connectDB()
 
 const app = express()
 
-app.get('/', (req, res)=>{
-    res.send(`Server is running on port ${PORT}`)
-})
+if (process.env.NODE_ENV === 'development') {
+    app.use(morgan('dev'))
+}
 
-app.get('/users', (req, res)=>{
-    res.json(users)
-})
+app.use(express.json())
 
-app.get('/users/:id', (req, res)=>{
-    const user = users.find((u) => u._id === req.params.id)
-    res.json(user)
-})
+app.use('/sessions', sessionRoutes)
+app.use('/users', userRoutes)
+app.use('/upload', uploadRoutes)
 
+const __dirname = path.resolve()
+app.use('/uploads', express.static(path.join(__dirname, '/uploads')))
 
-app.listen(PORT, console.log('The server has started'))
+if (process.env.NODE_ENV === 'production') {
+    app.use(express.static(path.join(__dirname, '/frontend/build')))
+
+    app.get('*', (req, res) =>
+        res.sendFile(path.resolve(__dirname, 'frontend', 'build', 'index.html'))
+    )
+}
+
+app.use(notFound)
+app.use(errorHandler)
+
+const PORT = process.env.PORT || 5000
+
+app.listen(
+    PORT,
+    console.log(
+        `Server running in ${process.env.NODE_ENV} mode on port ${PORT}`.yellow.bold
+    )
+)
