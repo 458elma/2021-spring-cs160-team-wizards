@@ -1,18 +1,20 @@
 import React from 'react'
-import {Row, Col, Container} from 'react-bootstrap'
+import {Row, Col, Container, Nav} from 'react-bootstrap'
+import { LinkContainer } from 'react-router-bootstrap'
+import './Footer.css'
 
 const Footer = () => {
     return (
         <footer>
-            <Container>
-                <Row>
-                    <Col className='text-center py-3'>
+            <Row className = 'main-footer' >
+                    <Col className='text-center py-4'>
                         Copyright &copy; TutorPlace {new Date().getFullYear()}
                     </Col>
                 </Row>
-            </Container>
+                
         </footer>
     )
 }
 
 export default Footer
+
